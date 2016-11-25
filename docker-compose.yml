@@ -17,8 +17,18 @@ services:
     command: "node /var/app/server1.js"
     volumes:
       - ./app:/var/app
+    links:
+      - redis
+      
   web2:
     image: node
     command: "node /var/app/server2.js"
     volumes:
       - ./app:/var/app
+    links:
+      - redis
+
+  redis:
+    image: redis
+    ports:
+      - "6379"
